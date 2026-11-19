@@ -122,6 +122,22 @@ tr.rec td{background:var(--subject-soft)}
 .card-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}.card-head h2{margin:0}
 .share-note{margin-top:10px}.cite-actions{margin:10px 0 0!important}
 th.w-date{width:120px}th.w-n{width:28px}
+/* forms (contact) */
+.form .fields{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+.field{display:grid;gap:6px;align-content:start}
+.field.wide{grid-column:1/-1}
+.field label{font:700 12px/1.4 var(--sans)}
+.field .optional{font-weight:400;color:var(--mute)}
+.field input,.field select,.field textarea{font:15px/1.4 var(--sans);color:var(--ink);background:var(--sheet);border:1px solid #b9bcb0;padding:10px 12px;width:100%;border-radius:0}
+.field textarea{resize:vertical;min-height:140px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--subject);outline-offset:0;border-color:var(--subject)}
+.honey{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-privacy{margin:18px 0 14px}
+.form-error{color:var(--crit);font:600 13.5px/1.5 var(--sans);margin-bottom:12px}
+.form-done h2{font-size:28px;margin:6px 0 10px}
+.form-done p{margin-bottom:8px}
+.decision-contact{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);font:14px/1.6 var(--sans)}
+.cite-box .cite-more{margin:12px 0 0}
 /* model page */
 .model-page{max-width:1180px;margin:0 auto;padding:44px 24px 90px}
 .model-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:22px}
@@ -217,6 +233,7 @@ input[type=range]{width:100%;accent-color:var(--subject);margin:8px 0 0}
   #tank{width:100%;height:200px}
   .stats{grid-template-columns:1fr}
   .meta{grid-template-columns:1fr 1fr;gap:14px 20px}
+  .form .fields{grid-template-columns:1fr}
   .meta dd{white-space:normal}
   .stat:nth-child(even){padding-left:0;border-left:0}
 }
