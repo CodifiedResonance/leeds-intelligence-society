@@ -12,21 +12,21 @@ const ROSE = `<svg class="sprite" aria-hidden="true"><defs><symbol id="rose" vie
 
 function figure1() {
   // A measuring glass: 0–160 litres per person per day.
-  const top = 18, bot = 262, x0 = 70, x1 = 230, max = 160, y = v => bot - (v / max) * (bot - top);
-  const line = (v, label, sub, col, dash) => `<line x1="${x0 - 8}" x2="${x1 + 14}" y1="${y(v)}" y2="${y(v)}" stroke="${col}" stroke-width="1" ${dash ? 'stroke-dasharray="4 3"' : ''}/><text x="${x1 + 22}" y="${y(v) + 4}" font-family="Arial, Liberation Sans, sans-serif" font-size="12.5" fill="#141a18"><tspan font-weight="700">${label}</tspan><tspan fill="#56615c"> ${sub}</tspan></text>`;
+  const top = 18, bot = 262, x0 = 52, x1 = 150, max = 160, y = v => bot - (v / max) * (bot - top);
+  const line = (v, label, sub, col, dash) => `<line x1="${x0 - 8}" x2="${x1 + 14}" y1="${y(v)}" y2="${y(v)}" stroke="${col}" stroke-width="1" ${dash ? 'stroke-dasharray="4 3"' : ''}/><text x="${x1 + 22}" y="${y(v) + 4}" font-family="Arial, Liberation Sans, sans-serif" font-size="13.5" fill="#141a18"><tspan font-weight="700">${label}</tspan><tspan fill="#56615c"> ${sub}</tspan></text>`;
   let ticks = '';
-  for (let v = 0; v <= 160; v += 20) ticks += `<line x1="${x0 - 6}" x2="${x0}" y1="${y(v)}" y2="${y(v)}" stroke="#56615c"/><text x="${x0 - 10}" y="${y(v) + 4}" text-anchor="end" font-family="Arial, Liberation Sans, sans-serif" font-size="10.5" fill="#56615c">${v}</text>`;
-  return `<svg viewBox="0 0 640 290" width="100%" role="img" aria-label="A measuring glass marked from 0 to 160 litres. The proposed allowance fills it to 80 litres, inside the UN range of 50 to 100 litres and below average use of 136.9 litres.">
+  for (let v = 0; v <= 160; v += 20) ticks += `<line x1="${x0 - 6}" x2="${x0}" y1="${y(v)}" y2="${y(v)}" stroke="#56615c"/><text x="${x0 - 10}" y="${y(v) + 4}" text-anchor="end" font-family="Arial, Liberation Sans, sans-serif" font-size="12" fill="#56615c">${v}</text>`;
+  return `<svg viewBox="0 0 480 290" width="100%" class="fig-glass" role="img" aria-label="A measuring glass marked from 0 to 160 litres. The proposed allowance fills it to 80 litres, inside the UN range of 50 to 100 litres and below average use of 136.9 litres.">
   <rect x="${x0}" y="${y(100)}" width="${x1 - x0}" height="${y(50) - y(100)}" fill="#dbe8ea"/>
   <rect x="${x0}" y="${y(80)}" width="${x1 - x0}" height="${bot - y(80)}" fill="#1f5f73"/>
   <path d="M${x0} ${top - 6} V${bot} H${x1} V${top - 6}" fill="none" stroke="#141a18" stroke-width="1.6"/>
   ${ticks}
-  ${line(136.9, '136.9 L', 'average household use, England', '#141a18', true)}
-  ${line(100, '100 L', 'top of UN basic-needs range', '#8a6a2f', true)}
-  ${line(80, '80 L', 'proposed Essential Water Allowance', '#1f5f73', false)}
-  ${line(50, '50 L', 'bottom of UN basic-needs range', '#8a6a2f', true)}
+  ${line(136.9, '136.9 L', 'average use, England', '#141a18', true)}
+  ${line(100, '100 L', 'top of UN range', '#8a6a2f', true)}
+  ${line(80, '80 L', 'proposed allowance', '#1f5f73', false)}
+  ${line(50, '50 L', 'bottom of UN range', '#8a6a2f', true)}
   <text x="${(x0 + x1) / 2}" y="${y(40)}" text-anchor="middle" font-family="Georgia, Gelasio, serif" font-size="30" fill="#ffffff">80 L</text>
-  <text x="${x0 - 46}" y="${(top + bot) / 2}" transform="rotate(-90 ${x0 - 46} ${(top + bot) / 2})" text-anchor="middle" font-family="Arial, Liberation Sans, sans-serif" font-size="10.5" fill="#56615c">litres per person per day</text>
+  <text x="${x0 - 38}" y="${(top + bot) / 2}" transform="rotate(-90 ${x0 - 38} ${(top + bot) / 2})" text-anchor="middle" font-family="Arial, Liberation Sans, sans-serif" font-size="12" fill="#56615c">litres per person per day</text>
 </svg>`;
 }
 
@@ -58,6 +58,19 @@ let html = readFileSync('src/papers/water.html', 'utf8')
   .replace('{{sources}}', sources())
   .replace(/\{\{cite:([^}]+)\}\}/g, (_, ids) => cite(ids.split(',').map(x => x.trim())))
   .replace(/\{\{n:([^}]+)\}\}/g, (_, key) => `<span class="num" data-check="${key}">${value(key)}</span>`);
+
+// Give every body cell its column heading, so tables can stack into cards on phones.
+html = html.replace(/<table>([\s\S]*?)<\/table>/g, (whole, inner) => {
+  const head = inner.match(/<thead>([\s\S]*?)<\/thead>/);
+  if (!head) return whole;
+  const labels = [...head[1].matchAll(/<th[^>]*>([\s\S]*?)<\/th>/g)].map(m => m[1].replace(/<[^>]+>/g, '').trim());
+  const body = inner.replace(/<tr([^>]*)>([\s\S]*?)<\/tr>/g, (tr, attrs, cells) => {
+    if (/<th/.test(cells)) return tr;
+    let i = 0;
+    return `<tr${attrs}>` + cells.replace(/<td(?![^>]*data-label)([^>]*)>/g, (_, a) => `<td data-label="${esc(labels[i++] || '')}"${a}>`) + '</tr>';
+  });
+  return `<table class="stack">${body}</table>`;
+});
 
 const left = html.match(/\{\{[^}]+\}\}/g);
 if (left) throw new Error('Unfilled tokens: ' + left.join(', '));

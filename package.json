@@ -4,7 +4,7 @@
   "type": "module",
   "description": "leedsintelligencesociety.com: static site. The public/ folder is the website; no build is needed to deploy.",
   "scripts": {
-    "build": "node scripts/build-water.mjs && node scripts/check-water.mjs",
+    "build": "node scripts/build-water.mjs && node scripts/stamp-assets.mjs && node scripts/check-water.mjs",
     "check": "node scripts/check-water.mjs",
     "pdf": "python3 scripts/make-pdf.py"
   }
