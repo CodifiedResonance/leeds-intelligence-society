@@ -5,6 +5,7 @@ leedsintelligencesociety.com. A static site: `public/` is the website, deployed 
 ## Rules for every change
 
 - No logins, databases or third-party scripts. Forms post to Formspree. `public/_headers` sets a strict Content Security Policy: no inline `<script>` code and no `style=""` attributes. Use the stylesheets and external scripts.
+- The author's name is **Andrew Thomas** in every paper, citation, notice and piece of metadata.
 - British English. Plain, direct sentences. No invented facts: every factual claim in a Civic Paper is cited.
 - Generated files are committed (`public/water/index.html`, the PDF, the CSV). Never edit them by hand. Edit the source and run the build.
 
