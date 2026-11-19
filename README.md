@@ -43,6 +43,34 @@ npx serve public
 
 or open `public/index.html` directly (forms need a real server to post).
 
+## Civic Papers
+
+Each proposal is published as a Civic Paper: a paper at `/<subject>/` and an open model at `/<subject>/model/`, sharing the template in `public/assets/civic-paper.css`.
+
+Civic Paper No. 01, *The Leeds Water Guarantee*:
+
+```
+src/papers/water.html            The paper's source, with {{cite:…}} and {{n:…}} tokens
+public/assets/water/model.js     The model: inputs, sources, evidence register, calculations
+public/assets/water/model-page.js  The interactive model page
+public/water/index.html          Built paper (generated; do not edit by hand)
+public/water/model/index.html    The model page
+public/water/lis-civic-paper-01-water.pdf       Generated PDF
+public/water/lis-civic-paper-01-evidence.csv    Generated evidence register
+scripts/                         build, check and PDF scripts
+```
+
+After changing the paper or the model:
+
+```
+npm run build   # fills the template from the model, writes the CSV, then checks every figure
+npm run pdf     # re-renders the PDF (needs Python Playwright and Chromium)
+```
+
+`{{n:a.total}}` inserts a figure from the model (scenario `a`, field `total`), so the paper cannot drift from the model. `{{cite:ea,un}}` inserts numbered references from the `SOURCES` list. The build fails if any token is unfilled or any source id is unknown.
+
+The generated files are committed, so Cloudflare still deploys without a build step.
+
 ## Adding a page
 
 Create `public/<name>/index.html`, link `/assets/site.css`, copy the `#rose` SVG symbol from the top of `index.html` for the wordmark, and add the URL to `sitemap.xml`.

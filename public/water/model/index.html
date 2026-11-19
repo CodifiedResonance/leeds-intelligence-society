@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Leeds Water Guarantee: the model · Leeds Intelligence Society</title>
+<meta name="description" content="Change the assumptions behind Civic Paper No. 01 and see the cost, who pays, and what is still unknown.">
+<link rel="canonical" href="https://leedsintelligencesociety.com/water/model/">
+<meta name="theme-color" content="#101616">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="The Leeds Water Guarantee: the model">
+<meta property="og:description" content="Set the allowance, who is covered and who pays. Every input is sourced.">
+<meta property="og:image" content="https://leedsintelligencesociety.com/assets/social-card.png">
+<link rel="stylesheet" href="/assets/civic-paper.css">
+<script type="module" src="/assets/water/model-page.js"></script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true"><defs><symbol id="rose" viewBox="0 0 100 100"><g id="petal"><path d="M50 48C35 39 25 29 30 19C34 11 44 13 50 20C56 13 66 11 70 19C75 29 65 39 50 48Z" fill="currentColor"/><path d="M48 39L50 27L52 39" stroke="#101616" stroke-width="1.2" fill="none"/></g><use href="#petal" transform="rotate(72 50 50)"/><use href="#petal" transform="rotate(144 50 50)"/><use href="#petal" transform="rotate(216 50 50)"/><use href="#petal" transform="rotate(288 50 50)"/><circle cx="50" cy="50" r="12" fill="#101616" stroke="currentColor" stroke-width="2"/><circle cx="50" cy="50" r="4" fill="#c8a775"/></symbol></defs></svg>
+<header class="site-bar">
+  <div class="in">
+    <a class="wordmark" href="/" aria-label="Leeds Intelligence Society home"><svg aria-hidden="true"><use href="#rose"/></svg><span>LEEDS INTELLIGENCE SOCIETY<small>CIVIC PAPERS</small></span></a>
+    <nav aria-label="Paper"><a href="/water/">Paper</a><a href="/water/model/" aria-current="page">Model</a><a href="/water/#annex-b">Evidence</a><a href="/">The Society</a></nav>
+  </div>
+</header>
+
+<main class="model-page">
+  <div class="model-head">
+    <div>
+      <p class="k">Civic Paper No. 01 &nbsp;·&nbsp; The model</p>
+      <h1>The Leeds Water Guarantee</h1>
+      <p>Change the assumptions behind the paper and see the cost, who pays and what is still unknown. It opens on the scenario the paper recommends. The method is set out in <a href="/water/#annex-a">Annex A</a>.</p>
+    </div>
+    <div class="tools noprint"><a class="tool" href="/water/">Read the paper <span aria-hidden="true">→</span></a><a class="tool" href="/water/lis-civic-paper-01-water.pdf" download>PDF <span aria-hidden="true">↓</span></a></div>
+  </div>
+
+  <div class="presets" role="group" aria-label="Scenarios from the paper">
+    <button class="chip" type="button" data-preset="a" aria-pressed="true">A. Water-poor first (recommended)</button>
+    <button class="chip" type="button" data-preset="b" aria-pressed="false">B. At-risk, national funding</button>
+    <button class="chip" type="button" data-preset="c" aria-pressed="false">C. Universal minimum, tariff</button>
+    <button class="chip" type="button" data-preset="d" aria-pressed="false">D. Universal, investors and Government</button>
+  </div>
+
+  <div class="model-grid">
+    <form class="controls" id="controls" aria-label="Assumptions">
+      <div class="ctl">
+        <label for="litres">Allowance per person per day <output id="o-litres" for="litres">80 L</output></label>
+        <input type="range" id="litres" min="20" max="160" step="5" value="80">
+        <small>UN guide for basic needs: 50–100 L. Average use in England: 136.9 L.</small>
+      </div>
+      <div class="ctl">
+        <span class="lab" id="scope-lab">Who is covered</span>
+        <div class="seg" role="radiogroup" aria-labelledby="scope-lab">
+          <input type="radio" name="scope" id="sc-p5" value="p5" checked><label for="sc-p5">Water poverty<br>(over 5%)</label>
+          <input type="radio" name="scope" id="sc-p3" value="p3"><label for="sc-p3">At risk<br>(over 3%)</label>
+          <input type="radio" name="scope" id="sc-all" value="all"><label for="sc-all">Every<br>household</label>
+        </div>
+        <small>Share of income after housing costs spent on water. Leeds counts use national rates.</small>
+      </div>
+      <div class="ctl"><label class="check" for="standing"><input type="checkbox" id="standing" checked> Also cover standing charges (£87.95 a year in 2026/27)</label></div>
+      <div class="ctl">
+        <label for="year">Tariff year <output id="o-year" for="year">2026/27</output></label>
+        <input type="range" id="year" min="2026" max="2035" step="1" value="2026">
+      </div>
+      <div class="ctl">
+        <label for="growth">Bill growth each year <output id="o-growth" for="growth">5.0%</output></label>
+        <input type="range" id="growth" min="0" max="10" step="0.5" value="5">
+        <small>An assumption. Bills for 2030–35 are not yet set.</small>
+      </div>
+      <div class="ctl">
+        <label for="admin">Running and evaluation <output id="o-admin" for="admin">3%</output></label>
+        <input type="range" id="admin" min="0" max="10" step="1" value="3">
+      </div>
+      <p class="group">Who pays (rescaled to 100%)</p>
+      <div class="ctl fund"><label for="f-rise"><span><i class="sw rise"></i>Higher users, through the tariff</span><output id="o-rise">40%</output></label><input type="range" id="f-rise" min="0" max="100" value="40"></div>
+      <div class="ctl fund"><label for="f-co"><span><i class="sw co"></i>Company and investors</span><output id="o-co">30%</output></label><input type="range" id="f-co" min="0" max="100" value="30"></div>
+      <div class="ctl fund"><label for="f-ex"><span><i class="sw ex"></i>National government</span><output id="o-ex">30%</output></label><input type="range" id="f-ex" min="0" max="100" value="30"></div>
+      <div class="ctl fund"><label for="f-loc"><span><i class="sw loc"></i>Leeds and West Yorkshire</span><output id="o-loc">0%</output></label><input type="range" id="f-loc" min="0" max="100" value="0"></div>
+    </form>
+
+    <div class="outs">
+      <div class="card top">
+        <svg id="tank" viewBox="0 0 140 280" role="img" aria-label="The allowance shown as a water level against reference volumes"></svg>
+        <div>
+          <p class="k" id="cost-label">Annual cost, 2026/27</p>
+          <p class="big num" id="cost">£10.4m</p>
+          <p class="sub" id="cost-sub">80 litres per person per day, free, for households in water poverty (over 5% of income), with standing charges covered.</p>
+          <div class="stats">
+            <div class="stat"><b class="num" id="st-hh">23,220</b><span>households covered</span></div>
+            <div class="stat"><b class="num" id="st-val">£436</b><span>value to an average household a year</span></div>
+            <div class="stat"><b class="num" id="st-share">4.8%</b><span>of all Leeds household water bills</span></div>
+            <div class="stat"><b class="num" id="st-gap">129%</b><span>of the typical water-poverty gap (£337)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Who pays, and what it means for them</h2>
+        <div class="bar" id="fund-bar" aria-hidden="true"></div>
+        <div class="flist" id="fund-list"></div>
+      </div>
+
+      <div class="card">
+        <h2>Cost over ten years at these settings</h2>
+        <svg id="spark" viewBox="0 0 600 110" preserveAspectRatio="none" role="img" aria-label="Annual cost from 2026/27 to 2035/36"></svg>
+        <p class="note" id="spark-note"></p>
+      </div>
+
+      <div class="card" aria-live="polite">
+        <div class="card-head"><h2>What this scenario still needs</h2><div class="counts" id="counts"></div></div>
+        <ul class="issues" id="issues"></ul>
+      </div>
+
+      <div class="card">
+        <h2>Share or cite this scenario</h2>
+        <div class="share-row"><input id="share-url" readonly aria-label="Link to this scenario"><button class="tool" type="button" id="copy-link">Copy link</button></div>
+        <p class="note share-note" id="share-note">The link reopens the model with exactly these settings.</p>
+      </div>
+      <p class="note">Model version <span id="ver">0.9</span>. Inputs checked 19 November 2026. These are estimates for discussion, not quotes or entitlements.</p>
+    </div>
+  </div>
+</main>
+</body>
+</html>
