@@ -1,5 +1,5 @@
 /* The Leeds Water Guarantee: interactive model page. Uses the same module as the paper. */
-import { compute, issues, PRESETS, FUNDERS, SCOPES, D, fmt, toQuery, fromQuery, VERSION } from './model.js';
+import { compute, issues, PRESETS, FUNDERS, SCOPES, D, fmt, toQuery, fromQuery, VERSION, CHECKED } from './model.js';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -101,7 +101,7 @@ $('copy-link').addEventListener('click', () => {
   const ok = () => { $('share-note').textContent = 'Link copied. It reopens the model with exactly these settings.'; };
   if (navigator.clipboard) navigator.clipboard.writeText(u.value).then(ok, () => u.select()); else u.select();
 });
-$('ver').textContent = VERSION;
+$('ver').textContent = VERSION; $('checked').textContent = CHECKED;
 
 const initial = fromQuery(location.search) || PRESETS.a;
 write(initial); render(false);

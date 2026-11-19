@@ -1,0 +1,112 @@
+{
+  "paper": "Civic Paper No. 01: The Leeds Water Guarantee",
+  "template": "src/papers/water.html",
+  "model": "public/assets/water/model.js",
+  "url": "https://leedsintelligencesociety.com/water/",
+  "claims": [
+    {
+      "id": "water-bill",
+      "claim": "The Government's water bill was announced in the King's Speech (13 May 2026) as the Clean Water Bill; on 29 September 2026 the Prime Minister said the strengthened Water Bill will remove the 1–3% caps on government shareholdings set under the Water Act 1989, and that mayors will gain powers.",
+      "where": ["Table 3", "Table 4 step 4", "paras 6.1, 1.5, 4.2", "Decision 3"],
+      "sources": ["kings", "defra-sep", "cl-own"],
+      "check": "Has the bill been introduced? Its formal name, current stage on bills.parliament.uk, whether the share-cap removal and mayoral powers are in it, and Royal Assent.",
+      "mode": "auto"
+    },
+    {
+      "id": "ten-year-plan",
+      "claim": "A 10-year plan for Britain, setting out stronger public control of water, is due 'later this year' (said 29 September 2026).",
+      "where": ["Table 3", "Decision 3"],
+      "sources": ["defra-sep"],
+      "check": "Has it been published? If so, what does it say about water affordability, social tariffs or local control?",
+      "mode": "auto"
+    },
+    {
+      "id": "national-social-tariff",
+      "claim": "In January 2026 the Government decided against a national social tariff.",
+      "where": ["Table 2", "Table 3", "paras 8.6, 2.5", "model issues()"],
+      "sources": ["mse", "cl-white"],
+      "check": "Has a national or compulsory social tariff since been announced, legislated or amended into a bill?",
+      "mode": "review"
+    },
+    {
+      "id": "regulator",
+      "claim": "The White Paper commits to replacing Ofwat with a single regulator.",
+      "where": ["Table 3", "Table 2", "Annex A"],
+      "sources": ["cl-white"],
+      "check": "Has the new regulator been named or established? Update references to 'the regulator' or Ofwat where needed.",
+      "mode": "auto"
+    },
+    {
+      "id": "price-review",
+      "claim": "On 23 October 2026 the Environment Secretary said the Government will intervene in the next price review.",
+      "where": ["Table 3", "Table 4 step 3", "Decision 2"],
+      "sources": ["eagle"],
+      "check": "Has the Government published its direction or strategic policy statement for the next price review? Does it include affordability or essential-volume objectives? Confirm the post-holder is still Environment Secretary.",
+      "mode": "auto"
+    },
+    {
+      "id": "regional-councils",
+      "claim": "Eight regional water councils announced 5 November 2026; local leaders' proposals on how they run are due by the end of 2026.",
+      "where": ["Summary", "Decision 1", "Table 3", "Table 4 step 2"],
+      "sources": ["defra-nov"],
+      "check": "Membership and remit of the Yorkshire council; whether the deadline has moved; whether West Yorkshire has submitted. After 31 December 2026 Decision 1 is out of date and needs rewording.",
+      "mode": "review"
+    },
+    {
+      "id": "kelda-ownership",
+      "claim": "Kelda Holdings is owned 42% EQT, 42% GIC, 16% TCorp; EQT's purchase was reported to value Kelda at about £9.4bn, roughly 90% of RCV.",
+      "where": ["para 6.1"],
+      "sources": ["eqt", "yp", "pew"],
+      "check": "Any change of shareholding, government stake, special administration or major refinancing.",
+      "mode": "auto"
+    },
+    {
+      "id": "office-holders",
+      "claim": "The paper addresses the Mayor of West Yorkshire, the Secretary of State for Environment and HM Government by office, not by name.",
+      "where": ["Decisions sought"],
+      "sources": [],
+      "check": "Confirm the offices still exist under those titles (e.g. a department renamed or a mayoralty changed).",
+      "mode": "auto"
+    },
+    {
+      "id": "tariffs",
+      "claim": "Yorkshire Water 2026/27 metered tariffs: water £2.1838/m³, sewerage £2.9761/m³ on 95% of supply, standing charges £54.10 and £33.85.",
+      "where": ["model D", "para 1.2", "Annex A", "Evidence register"],
+      "sources": ["yw-meter", "yw-scheme"],
+      "check": "Have 2027/28 charges been published (usually February–March)? A new tariff year changes the model's base year and most figures.",
+      "mode": "review"
+    },
+    {
+      "id": "average-bill",
+      "claim": "Average Yorkshire Water household bill £636 in 2026/27.",
+      "where": ["model D", "Summary", "Table 5"],
+      "sources": ["wateruk"],
+      "check": "Has Water UK published 2027/28 averages?",
+      "mode": "review"
+    },
+    {
+      "id": "water-poverty",
+      "claim": "6.8% of households in England and Wales in water poverty (over 5%), 15% over 3%, median gap £337 (2024/25).",
+      "where": ["model D", "Summary", "paras 3.4, 10.1"],
+      "sources": ["ccw-poverty"],
+      "check": "Has the Consumer Council for Water (or its successor) published newer figures, or any Leeds or Yorkshire estimate?",
+      "mode": "review"
+    },
+    {
+      "id": "social-tariff-count",
+      "claim": "About 2.3 million households on water social tariffs (November 2026); Yorkshire Water contributes £2.5m in 2026/27.",
+      "where": ["para 2.5", "Table 2", "para 4.1", "model D"],
+      "sources": ["tariffs", "yw-assure"],
+      "check": "Newer counts or company contribution figures.",
+      "mode": "review"
+    },
+    {
+      "id": "average-use",
+      "claim": "Average household use in England 136.9 litres per person per day (2025/26).",
+      "where": ["model D", "Figure 1", "para 1.4"],
+      "sources": ["ea"],
+      "check": "Has the Environment Agency published a newer annual figure?",
+      "mode": "review"
+    }
+  ]
+}

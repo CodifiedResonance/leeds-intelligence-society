@@ -14,8 +14,13 @@ httpd = socketserver.TCPServer(("127.0.0.1", 0), handler)
 PORT = httpd.server_address[1]
 threading.Thread(target=httpd.serve_forever, daemon=True).start()
 
+import re
+_model = (ROOT / "assets" / "water" / "model.js").read_text()
+VERSION = re.search(r"VERSION = '([^']+)'", _model).group(1)
+CHECKED = re.search(r"CHECKED = '([^']+)'", _model).group(1)
+
 FOOT = ('<div style="width:100%;font:7.5pt Arial,Liberation Sans,sans-serif;color:#56615c;padding:0 19mm;display:flex;justify-content:space-between">'
-        '<span>Leeds Intelligence Society &nbsp;·&nbsp; Civic Paper No. 01 &nbsp;·&nbsp; The Leeds Water Guarantee &nbsp;·&nbsp; Draft v0.9, 19 November 2026</span>'
+        f'<span>Leeds Intelligence Society &nbsp;·&nbsp; Civic Paper No. 01 &nbsp;·&nbsp; The Leeds Water Guarantee &nbsp;·&nbsp; Draft v{VERSION} &nbsp;·&nbsp; Facts checked {CHECKED}</span>'
         '<span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>')
 
 try:
