@@ -5,7 +5,7 @@
 */
 
 export const VERSION = '0.9';
-export const CHECKED = '19 November 2026';
+export const CHECKED = '23 November 2026';
 
 /* Published and derived inputs. Every value is listed in REGISTER with its source. */
 export const D = {
